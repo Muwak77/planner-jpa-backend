@@ -33,6 +33,7 @@ public class CalenderEventController {
     @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/{id}")
     public void update(@RequestBody CalendarEvent updateEvent,@PathVariable Long id) {
+        System.out.println("Request Body: " + updateEvent);
         if(!eventRepository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Content not Found");
         }
