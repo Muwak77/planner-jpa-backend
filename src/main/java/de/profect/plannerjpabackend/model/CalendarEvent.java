@@ -10,7 +10,7 @@ public class CalendarEvent {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private LocalDate datum;
+    private LocalDate dateTime;
     @OneToMany(cascade = CascadeType.MERGE)
     private CalendarReply[] replies;
 
@@ -18,10 +18,10 @@ public class CalendarEvent {
     protected CalendarEvent() {
     }
 
-    public CalendarEvent(Long id, String name, LocalDate datum, CalendarReply[] replies) {
+    public CalendarEvent(Long id, String name, LocalDate dateTime, CalendarReply[] replies) {
         this.id = id;
         this.name = name;
-        this.datum = datum;
+        this.dateTime = dateTime;
         this.replies = replies;
     }
 
@@ -43,12 +43,12 @@ public class CalendarEvent {
         this.name = name;
     }
 
-    public LocalDate getDatum() {
-        return datum;
+    public LocalDate getDateTime() {
+        return dateTime;
     }
 
-    public void setDatum(LocalDate datum) {
-        this.datum = datum;
+    public void setDateTime(LocalDate dateTime) {
+        this.dateTime = dateTime;
     }
 
     public CalendarReply[] getReplies() {

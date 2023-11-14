@@ -12,15 +12,15 @@ public class CalendarUser {
     @Column(name = "id")
     private Long id;
 
-    private String username;
+    private String name;
 
     // Default constructor for Hibernate
     protected CalendarUser() {
     }
 
-    public CalendarUser(Long id, String username) {
+    public CalendarUser(Long id, String name) {
         this.id = id;
-        this.username = username;
+        this.name = name;
     }
 
     // Getters and Setters
@@ -32,11 +32,11 @@ public class CalendarUser {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String username) {
+        this.name = username;
     }
 }

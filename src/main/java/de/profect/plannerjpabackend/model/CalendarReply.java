@@ -10,12 +10,12 @@ public class CalendarReply {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private LocalDate datum;
+    private LocalDate dateTime;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     private CalendarUser user;
 
-    private ReplyAnswer answer;
+    private ReplyAnswer reply;
 
     private String comment;
 
@@ -23,11 +23,25 @@ public class CalendarReply {
     protected CalendarReply() {
     }
 
-    public CalendarReply(Long id, CalendarUser user, ReplyAnswer answer, String comment) {
+    public ReplyAnswer getReply() {
+        return reply;
+    }
+
+    public void setReply(ReplyAnswer reply) {
+        this.reply = reply;
+    }
+
+    public LocalDate getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDate dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public CalendarReply(Long id, CalendarUser user, ReplyAnswer reply, String comment) {
         this.id = id;
         this.user = user;
-        this.answer = answer;
-        this.comment = comment;
     }
 
     // Getters and Setters
@@ -48,21 +62,4 @@ public class CalendarReply {
         this.user = user;
     }
 
-    public ReplyAnswer getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(ReplyAnswer answer) {
-        this.answer = answer;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    // You can add other methods as needed
 }

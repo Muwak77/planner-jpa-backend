@@ -1,6 +1,9 @@
 package de.profect.plannerjpabackend.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.profect.plannerjpabackend.model.CalendarEvent;
+import de.profect.plannerjpabackend.model.CalendarReply;
 import de.profect.plannerjpabackend.repository.CalendarEventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,15 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/events/")
 public class CalenderEventController {
     private CalendarEventRepository eventRepository;
+
     @Autowired
     public CalenderEventController(CalendarEventRepository r) {
-        this.eventRepository=r;
+        this.eventRepository = r;
     }
+
     @GetMapping
     public List<CalendarEvent> getAll() {
         return this.eventRepository.findAll();
@@ -31,13 +35,44 @@ public class CalenderEventController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/{id}")
-    public void update(@RequestBody CalendarEvent updateEvent,@PathVariable Long id) {
-        System.out.println("Request Body: " + updateEvent);
-        if(!eventRepository.existsById(id)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Content not Found");
-        }
+    public void update(@RequestBody CalendarEvent updateEvent, @PathVariable Long id) {
 
-        eventRepository.save(updateEvent);
+        //get event from the Database
+        System.out.println("-----------------------------------------");
+        System.out.println(updateEvent.getId());
+        System.out.println(updateEvent.getName());
+        System.out.println(updateEvent.getReplies().length);
+        if (eventRepository.existsById(id)) {
+
+            //Get the Current Event
+            CalendarEvent currentEventVersion = eventRepository.getReferenceById(id);
+
+            //Clear existing Replies
+            currentEventVersion.setReplies( new  CalendarReply[0]);
+
+
+
+
+            System.out.println("New Count:"+currentEventVersion.getReplies().length);
+            for (CalendarReply reply : updateEvent.getReplies()) {
+                System.out.println("Reply-ID:"+reply.getId());
+                System.out.println("Reply-User-ID:"+reply.getUser().getId());
+                System.out.println("Reply-User-Name:"+reply.getUser().getName());
+                System.out.println("Reply-Answer:"+reply.getReply());
+            }
+            eventRepository.save(updateEvent);
+        }
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @CrossOrigin(origins = "http://localhost:4200")
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        System.out.println("Request Body: ");
+        if (eventRepository.existsById(id)) {
+            eventRepository.deleteById(id);
+        }
     }
 }

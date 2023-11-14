@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/users/")
 public class CalenderUserController {
     private CalendarUserRepository userRepository;
     @Autowired
