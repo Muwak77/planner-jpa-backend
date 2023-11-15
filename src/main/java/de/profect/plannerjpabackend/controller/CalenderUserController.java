@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/users/")
 public class CalenderUserController {
     private CalendarUserRepository userRepository;
@@ -18,11 +19,6 @@ public class CalenderUserController {
     }
     @GetMapping
     public List<CalendarUser> getAll() {
-        List<CalendarUser> l = new ArrayList<CalendarUser>();
-        //return l;
-
-
-
         return this.userRepository.findAll();
     }
 

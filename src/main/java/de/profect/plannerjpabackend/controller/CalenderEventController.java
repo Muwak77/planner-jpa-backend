@@ -4,7 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.profect.plannerjpabackend.model.CalendarEvent;
 import de.profect.plannerjpabackend.model.CalendarReply;
+import de.profect.plannerjpabackend.model.CalendarUser;
 import de.profect.plannerjpabackend.repository.CalendarEventRepository;
+import de.profect.plannerjpabackend.repository.CalendarUserRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -12,16 +15,19 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/events/")
 public class CalenderEventController {
     private CalendarEventRepository eventRepository;
+    private CalendarUserRepository userRepository;
 
     @Autowired
-    public CalenderEventController(CalendarEventRepository r) {
-        this.eventRepository = r;
+    public CalenderEventController(CalendarUserRepository ur, CalendarEventRepository er) {
+        this.eventRepository = er;
+        this.userRepository = ur;
     }
 
     @GetMapping
@@ -44,23 +50,37 @@ public class CalenderEventController {
         System.out.println(updateEvent.getId());
         System.out.println(updateEvent.getName());
         System.out.println(updateEvent.getReplies().length);
+
+
+
+        // Now you can print or log the raw request body as needed
+
         if (eventRepository.existsById(id)) {
 
             //Get the Current Event
-            CalendarEvent currentEventVersion = eventRepository.getReferenceById(id);
+            CalendarEvent currentEventVersion = eventRepository.getById(id);
+
 
             //Clear existing Replies
-            currentEventVersion.setReplies( new  CalendarReply[0]);
+            currentEventVersion.setReplies(new CalendarReply[0]);
 
-
-
-
-            System.out.println("New Count:"+currentEventVersion.getReplies().length);
+            System.out.println(currentEventVersion.getId());
+            System.out.println("New Count:" + currentEventVersion.getReplies().length);
             for (CalendarReply reply : updateEvent.getReplies()) {
-                System.out.println("Reply-ID:"+reply.getId());
-                System.out.println("Reply-User-ID:"+reply.getUser().getId());
-                System.out.println("Reply-User-Name:"+reply.getUser().getName());
-                System.out.println("Reply-Answer:"+reply.getReply());
+
+                Optional<CalendarUser> u = userRepository.findById(reply.getUser().getId());
+
+                if (u.isPresent()) {
+                    //User already exists
+                    reply.setUser(u.get());
+                }
+
+                System.out.println("Reply-ID:" + reply.getId());
+                System.out.println("Reply-User-ID:" + reply.getUser().getId());
+                System.out.println("Reply-User-Name:" + reply.getUser().getName());
+                System.out.println("Reply-Answer:" + reply.getReply());
+
+
             }
             eventRepository.save(updateEvent);
         }
@@ -75,4 +95,6 @@ public class CalenderEventController {
             eventRepository.deleteById(id);
         }
     }
+
+
 }
