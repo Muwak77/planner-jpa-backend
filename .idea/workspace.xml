@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="fad9b85b-ea1c-4348-9661-92f460b0b944" name="Changes" comment="inital commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/profect/plannerjpabackend/controller/CalenderEventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/profect/plannerjpabackend/controller/CalenderEventController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/profect/plannerjpabackend/controller/CalenderUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/profect/plannerjpabackend/controller/CalenderUserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/profect/plannerjpabackend/model/CalendarUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/profect/plannerjpabackend/model/CalendarUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/profect/plannerjpabackend/controller/CalenderEventController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/profect/plannerjpabackend/controller/CalenderEventController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/profect/plannerjpabackend/model/CalendarUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/profect/plannerjpabackend/model/CalendarUser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/profect/plannerjpabackend/controller/CalenderUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/profect/plannerjpabackend/controller/CalenderUserController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +120,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699976857562</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="inital commit">
+      <option name="closed" value="true" />
+      <created>1700053011287</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1700053011287</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -139,21 +145,5 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="inital commit" />
     <option name="LAST_COMMIT_MESSAGE" value="inital commit" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/de/profect/plannerjpabackend/controller/CalenderEventController.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/de/profect/plannerjpabackend/controller/CalenderEventController.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

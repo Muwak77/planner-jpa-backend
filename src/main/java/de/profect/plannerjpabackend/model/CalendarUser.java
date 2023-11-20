@@ -38,9 +38,11 @@ public class CalendarUser {
     protected CalendarUser() {
     }
 
-    public CalendarUser(Long id, String name) {
+    public CalendarUser(Long id, String name,Boolean admin, String password) {
         this.id = id;
         this.name = name;
+        this.admin=admin;
+        this.password=password;
     }
 
     // Getters and Setters
